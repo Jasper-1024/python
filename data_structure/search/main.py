@@ -2,20 +2,63 @@
 
 from ST import randoms, prtree
 from bst import bst
+from llrbt import llrbt
+
+prt = prtree()
+
+
+def printree(node):
+    dot = prt.dot(node)
+    dot.view()
+    prt.dots.append(dot)
+    # print(dot.source)
+    # dot.render(
+    # filename=None, directory=None, view=False, cleanup=False, format='png')
+
 
 if __name__ == "__main__":
-    d = randoms.dict_int(n=15)
+    # dots清理等
+    prt.dots.clear()
+    t_bst = bst()
+    t_llrbt = llrbt()
+    # 取数据集
+    d = randoms.dict_int(n=300)
     keys = [key for key in d]
     minkey = min(keys)
     maxkey = max(keys)
-    test = bst()
+    # 插入
     for k, v in d.items():
-        test.insert(k, v)
-#    print(minkey, test.rank(minkey))
-#    print(maxkey, test.rank(maxkey))
-#    ert = bst.select_node(0, bst.root)
-    prt = prtree()
-    dot = prt.dot(test.root)
-    print(dot.source)
-    dot.render(
-        filename=None, directory=None, view=False, cleanup=False, format='png')
+        t_bst.insert(k, k)
+        t_llrbt.insert(k, k)
+
+    # test
+    for i in range(1, len(keys)):
+        if t_bst.select(i) != t_llrbt.select(i):
+            print('select falied')
+    for key in keys:
+        if t_bst.rank(key) != t_llrbt.rank(key):
+            print('rank falied')
+
+    # print(minkey, test.rank(minkey))
+    # print(maxkey, test.rank(maxkey))
+    # ert = bst.select_node(0, bst.root)
+
+    # d = randoms.dict_int(n=15)
+    # keys = [key for key in d]
+    # test = llrbt()
+    # for k, v in d.items():
+    #     test.insert(k, k)
+    #
+    # printree(test.root)
+    #
+    # test.delete(keys[5])
+    # printree(test.root)
+
+    # while test.root:
+    #     test.test_delemax()
+    #     printree(test.root)
+
+    # prt.gif()
+    # dot.render(
+    # filename=None, directory=None, view=False, cleanup=False, format='png')
+    pass

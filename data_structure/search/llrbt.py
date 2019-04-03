@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 
-from ST import ST, BtNode, randoms, prtree
+from ST import ST, BtNode
 
 red = 'red'
 black = 'black'
-prt = prtree()
 
 
 class llrbt(ST):
@@ -32,8 +31,12 @@ class llrbt(ST):
 
     # 删除
     def delete(self, key):
+        if (not self.isred(self.root.lchild)) and (not self.isred(
+                self.root.rchild)):
+            self.root.color = red
         self.root = self.delete_node(key, self.root)
-        self.root.color = black
+        if self.root:
+            self.root.color = black
 
     # 选择 返回排名k的key
     def select(self, k):
@@ -87,29 +90,38 @@ class llrbt(ST):
         return node
 
     def delete_node(self, key, node=None):
-        # 删除进入左子树
-        if key < node.key:
+        # 左子树
+        if self.key_compare(key, node.key) < 0:
             # 左链接,左左链接为黑
             if (not self.isred(node.lchild)
                     and not self.isred(node.lchild.lchild)):
-                #
+                # 左子树处理
                 node = self.moveRedLeft(node)
+            # 递归进入左子树
             node.lchild = self.delete_node(key, node.lchild)
+        # node/右子树
         else:
+            # 左链接为红,右旋转
             if self.isred(node.lchild):
                 node = self.rotateRight(node)
-            if key == node.key and node.rchild is None:
+            # 待删除为 node,且右子树为空 删除
+            if self.key_compare(key, node.key) == 0 and node.rchild is None:
                 return None
+            # 右链接为黑 右左链接为黑 右子树处理
             if not self.isred(node.rchild) and not self.isred(
                     node.rchild.lchild):
                 node = self.moveRedRight(node)
-            if key == node.key:
+            # 待删除为 node ,右子树不为空 寻找后继
+            if self.key_compare(key, node.key) == 0:
+                # 右子树最小
                 node.key = self.min(node.rchild)
                 node.value = self.search(node.rchild, node.key)
+                # 递归删除后继节点
                 node.rchild = self.deleteMin(node.rchild)
             else:
+                # 递归进入右子树
                 node.rchild = self.delete_node(key, node.rchild)
-        return self.fixUp(node)
+        return self.balance(node)
 
     def select_node(self, k, node=None):
         # 返回排名k的节点
@@ -149,10 +161,8 @@ class llrbt(ST):
             self.keys_node(arr, min, max, node.rchild)
 
     def deleteMin(self, node=None):
-        printree(self.root)
         # 不存在右链接为红,so只考虑左链接即可
         if node.lchild is None:
-            printree(self.root)
             return None
         # 左链接,左左链接为黑
         if (not self.isred(node.lchild)) and (not self.isred(
@@ -223,10 +233,6 @@ class llrbt(ST):
         nor(node.rchild)
         return node
 
-    # 删除时 往上修复
-    def fixUp(self, node=None):
-        return node
-
     # 删除后,向上修复平衡
     def balance(self, node=None):
         # 右链接为红,左旋转
@@ -256,15 +262,12 @@ class llrbt(ST):
         # node为红,左链接 左左链接 为黑
         # 反转node
         self.flipColors(node)
-        printree(self.root)
         # 右左链接为红
         if self.isred(node.rchild.lchild):
             # 右子树 右旋转
             node.rchild = self.rotateRight(node.rchild)
-            printree(self.root)
             # node左旋转
             node = self.rotateLeft(node)
-            printree(self.root)
         return node
 
     # 节点是否为红色
@@ -321,31 +324,5 @@ class llrbt(ST):
             self.root.color = black
 
 
-def printree(node):
-    dot = prt.dot(test.root)
-    # dot.view()
-    prt.dots.append(dot)
-    # print(dot.source)
-
-
 if __name__ == "__main__":
-    prt.dots.clear()
-
-    d = randoms.dict_int(n=15)
-
-    keys = [key for key in d]
-    test = llrbt()
-    for k, v in d.items():
-        test.insert(k, k)
-
-    printree(test.root)
-
-    while test.root:
-        test.test_delemax()
-        printree(test.root)
-
-    prt.gif()
-
-    # dot.render(
-    # filename=None, directory=None, view=False, cleanup=False, format='png')
     pass
