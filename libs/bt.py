@@ -10,7 +10,7 @@ class Color(Enum):
 
 
 class BtNode(object):
-    # key值 ,节点值 ,左子树 ,右子树 ,节点计数器
+    # key值 ,节点值 ,颜 `色 ,左子树 ,右子树 ,节点计数器
     def __init__(self,
                  key=0,
                  value=0,
@@ -32,7 +32,7 @@ class BtNode(object):
     @key.setter
     def key(self, key):
         if not isinstance(key, int):
-            raise ValueError('key must be an int!')
+            raise ValueError('key must be int!')
         self.__key = key
 
     @property
@@ -42,7 +42,7 @@ class BtNode(object):
     @value.setter
     def value(self, values):
         if not (isinstance(values, int) or isinstance(values, str)):
-            raise ValueError('value must be an int or str!')
+            raise ValueError('value must be int or str!')
         self.__value = values
 
     @property

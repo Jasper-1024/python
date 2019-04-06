@@ -2,9 +2,10 @@
 import unittest
 from randoms import randoms
 from bt import BtNode
+from ht import HTNode
 
 
-class test_randoms(unittest.TestCase):
+class test_libs(unittest.TestCase):
     def test_r_int(self):
         a = randoms.r_int()
         self.assertTrue(isinstance(a, int))
@@ -29,3 +30,20 @@ class test_randoms(unittest.TestCase):
                             or (getattr(tmp, i) == 0))
             with self.assertRaises(ValueError):
                 setattr(tmp, i, 1.3)
+
+    def test_HTNode(self):
+        tmp = HTNode()
+        for i in [
+                i for i in dir(tmp)
+                if not callable(i) and not i.startswith("__")
+        ]:
+            # 默认值为0或None
+            self.assertTrue((getattr(tmp, i) is None)
+                            or (getattr(tmp, i) == 0))
+            # 赋值错误
+            # with self.assertRaises(ValueError):
+            #     setattr(tmp, i, 1.3)
+
+
+if __name__ == "__main__":
+    unittest.main()
