@@ -23,7 +23,7 @@ class randoms(object):
         return matrix
 
     @classmethod
-    def dict_int(self, n=50, key='int', wk=100, value='int', wv=100):
+    def dict_int(self, n=50, key='int', wk=10000, value='int', wv=100):
         if key == 'int':
             keys = [randoms.r_int(wk) for i in range(n)]
         elif key == 'str':
