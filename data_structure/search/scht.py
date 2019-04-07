@@ -3,7 +3,7 @@
 from ST import ST, HTNode, randoms
 
 
-class sc(ST):
+class scht(ST):
     def __init__(self, tablesize=1, hash=hash):
         # hash表长度
         self.__tablesize = tablesize
@@ -52,7 +52,7 @@ class sc(ST):
             self.__table[index].insert(0, HTNode(key, value))
             self.__size += 1
         # 动态调整哈希表长度.
-        if self.__size > 0 and self.__size >= self.__tablesize * 5:
+        if self.__size > 0 and self.__size >= self.__tablesize * 8:
             self.resize(self.__tablesize * 2)
 
     def delete_node(self, key):
@@ -91,7 +91,7 @@ class sc(ST):
 
 
 if __name__ == "__main__":
-    test = sc()
+    test = scht()
     d = {1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6}
     d = randoms.dict_int(n=300, wk=1000)
     keys = [key for key in d]
