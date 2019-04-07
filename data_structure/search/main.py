@@ -3,6 +3,7 @@
 from ST import randoms, prtree
 from bst import bst
 from llrbt import llrbt
+from hash import sc
 
 prt = prtree()
 
@@ -21,6 +22,7 @@ if __name__ == "__main__":
     prt.dots.clear()
     t_bst = bst()
     t_llrbt = llrbt()
+    t_sc = sc()
     # 取数据集
     d = randoms.dict_int(n=300)
     keys = [key for key in d]
@@ -30,8 +32,12 @@ if __name__ == "__main__":
     for k, v in d.items():
         t_bst.insert(k, k)
         t_llrbt.insert(k, k)
+        t_sc.insert(k, k)
 
     # test
+    for i in range(1, len(keys)):
+        if t_bst.search(i) != t_sc.search(i):
+            print('search falied')
     for i in range(1, len(keys)):
         if t_bst.select(i) != t_llrbt.select(i):
             print('select falied')

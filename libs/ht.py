@@ -14,7 +14,7 @@ class HTNode(object):
 
     @key.setter
     def key(self, key):
-        if not isinstance(key, int) or isinstance(key, str):
+        if not (isinstance(key, int) or isinstance(key, str)):
             raise ValueError('key must be int or str!')
         self.__key = key
 
@@ -47,10 +47,3 @@ class HTNode(object):
         if not (isinstance(next, HTNode) or next is None):
             raise ValueError('next must be HTNode!')
         self.__next = next
-
-
-if __name__ == "__main__":
-    test = HTNode()
-    print(isinstance(test, HTNode))
-    test.prior = test
-    pass
