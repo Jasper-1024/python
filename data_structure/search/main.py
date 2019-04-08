@@ -3,7 +3,8 @@
 from ST import randoms, prtree
 from bst import bst
 from llrbt import llrbt
-from hash import sc
+from scht import scht
+from lpht import lpht
 
 prt = prtree()
 
@@ -22,9 +23,10 @@ if __name__ == "__main__":
     prt.dots.clear()
     t_bst = bst()
     t_llrbt = llrbt()
-    t_sc = sc()
+    t_sc = scht()
+    t_lp = lpht()
     # 取数据集
-    d = randoms.dict_int(n=300)
+    d = randoms.dict_int(n=100)
     keys = [key for key in d]
     minkey = min(keys)
     maxkey = max(keys)
@@ -38,6 +40,8 @@ if __name__ == "__main__":
     for i in range(1, len(keys)):
         if t_bst.search(i) != t_sc.search(i):
             print('search falied')
+        if t_lp.search(i) != t_sc.search(i):
+            print('search2 falied')
     for i in range(1, len(keys)):
         if t_bst.select(i) != t_llrbt.select(i):
             print('select falied')
