@@ -39,7 +39,7 @@ def upload(filename):
             print('uploda error msg:%s' % (resp['msg'].lower()))
             return None
         else:
-            # print('%s upload success' % (filename))
+            print('%s upload success' % (filename))
             return resp['data']['url']
 
 
@@ -61,6 +61,10 @@ def set_url_Clipboard(url):
         print('url type error')
 
 
+def is_image_exsit(filename):
+    return os.path.exists(filename)
+
+
 # 删除临时文件
 def del_flie(fliename):
     os.remove(fliename)
@@ -68,9 +72,15 @@ def del_flie(fliename):
 
 if __name__ == "__main__":
     while True:
-        if get_image_Clipboard():
-            url = upload(image_name)
-            set_url_Clipboard(url)
-            del_flie(image_name)
+        if is_image_exsit(image_name) or get_image_Clipboard():
+            try:
+                url = upload(image_name)
+                set_url_Clipboard(url)
+                print(url)
+                del_flie(image_name)
+            except BaseException as e:
+                print('upimage falid')
+            finally:
+                pass
 
-        time.sleep(0.8)
+        time.sleep(3)
