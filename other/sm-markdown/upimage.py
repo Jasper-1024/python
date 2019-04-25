@@ -74,8 +74,10 @@ if __name__ == "__main__":
     # set_url_Clipboard("123456", clipboard)
     while True:
         if get_image_Clipboard(clipboard):
-            url = upload(image_name)
-            set_url_Clipboard(url, clipboard)
-            del_flie(image_name)
-
-        time.sleep(0.8)
+            try:
+                url = upload(image_name)
+                set_url_Clipboard(url, clipboard)
+                del_flie(image_name)
+            except BaseException as e:
+                print('upimage falid')
+        time.sleep(3)
