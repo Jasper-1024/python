@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
 
-# 查找的基类
-class Graph(object):
+# 图的基类
+class GH(object):
     # v 个顶点的图
     def __init__(self, v):
         pass
@@ -30,3 +30,4 @@ class Graph(object):
     # 字符串
     def toString(self):
         pass
+
