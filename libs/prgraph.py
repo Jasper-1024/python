@@ -37,3 +37,5 @@ class prgraph(object):
     def dot_digraph(self) -> Digraph:
         dot = Digraph(name='digraph', node_attr={'shape': 'circle'})
         return dot
+
+    # g.node('0', color='red')
