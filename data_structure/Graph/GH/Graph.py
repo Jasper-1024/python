@@ -13,10 +13,10 @@ class Graph(GH):
         self.E = 0
         self.adj = [[] for i in range(V)]  # 创建邻接表,初始化为空
 
-    def V(self) -> int:
+    def rV(self) -> int:
         return self.V
 
-    def E(self) -> int:
+    def rE(self) -> int:
         return self.E
 
     def addEdge(self, v: int, e: int):
@@ -39,10 +39,10 @@ class Graph_AM(GH):
         self.E = 0
         self.adj = [[0 for i in range(V)] for i in range(V)]  # 创建邻接矩阵
 
-    def V(self) -> int:
+    def rV(self) -> int:
         return self.V
 
-    def E(self) -> int:
+    def rE(self) -> int:
         return self.E
 
     def addEdge(self, v: int, e: int):

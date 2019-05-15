@@ -8,11 +8,11 @@ class GH(object):
         pass
 
     # 顶点数
-    def V(self):
+    def rV(self):
         pass
 
     # 边数
-    def E(self):
+    def rE(self):
         pass
 
     # 添加边 v-m
@@ -20,7 +20,7 @@ class GH(object):
         pass
 
     # 返回v相邻的所有顶点
-    def adj(self, v):
+    def adjlist(self, v):
         pass
 
     # 反向图 (有向图)
