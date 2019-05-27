@@ -14,6 +14,7 @@ class prgraph(object):
         dot = self.dot_graph()
         V = gr.rV()
         for i in range(0, V):
+            dot.node(str(i))
             for j in gr.adjlist(i):
                 ha = filte(i, j)
                 if ha not in filt:
@@ -26,6 +27,7 @@ class prgraph(object):
         dot = self.dot_digraph()
         V = digr.rV()
         for i in range(0, V):
+            dot.node(str(i))
             for j in digr.adjlist(i):
                 dot.edge(str(i), str(j))
         return dot
