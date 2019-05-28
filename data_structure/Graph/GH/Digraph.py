@@ -33,13 +33,13 @@ class Digraph(GH):
                 R.addEdge(e, v)
         return R
 
-    def save(self):
-        file = open('Digraph.pickle', 'wb')
+    def save(self, fileName: str = 'Digraph.pickle'):
+        file = open(fileName, 'wb')
         pickle.dump(self, file)
         file.close
 
-    def load(self):
-        with open('Digraph.pickle', 'rb') as file:
+    def load(self, fileName: str = 'Digraph.pickle'):
+        with open(fileName, 'rb') as file:
             digraph = pickle.load(file)
         return digraph
 
@@ -79,13 +79,13 @@ class Digraph_AM(GH):
                     R.addEdge(v, e)
         return R
 
-    def save(self):
-        file = open('Digraph_AM.pickle', 'wb')
+    def save(self, fileName: str = 'Digraph_AM.pickle'):
+        file = open(fileName, 'wb')
         pickle.dump(self, file)
         file.close
 
-    def load(self):
-        with open('Digraph_AM.pickle', 'rb') as file:
+    def load(self, fileName: str = 'Digraph_AM.pickle'):
+        with open(fileName, 'rb') as file:
             digraph = pickle.load(file)
         return digraph
 

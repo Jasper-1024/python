@@ -28,13 +28,13 @@ class Graph(GH):
     def adjlist(self, v: int) -> list:
         return self.adj[v]
 
-    def save(self):
-        file = open('Graph.pickle', 'wb')
+    def save(self, fileName: str = 'Graph.pickle'):
+        file = open(fileName, 'wb')
         pickle.dump(self, file)
         file.close
 
-    def load(self):
-        with open('Graph.pickle', 'rb') as file:
+    def load(self, fileName: str = 'Graph.pickle'):
+        with open(fileName, 'rb') as file:
             graph = pickle.load(file)
         return graph
 
@@ -67,13 +67,13 @@ class Graph_AM(GH):
             if item == 1:
                 vlist.append(e)
         return vlist
-    
-    def save(self):
-        file = open('Graph_AM.pickle', 'wb')
+
+    def save(self, fileName: str = 'Graph_AM.pickle'):
+        file = open(fileName, 'wb')
         pickle.dump(self, file)
         file.close
 
-    def load(self):
-        with open('Graph_AM.pickle', 'rb') as file:
+    def load(self, fileName: str = 'Graph_AM.pickle'):
+        with open(fileName, 'rb') as file:
             graph = pickle.load(file)
         return graph

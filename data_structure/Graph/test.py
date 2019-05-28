@@ -12,7 +12,7 @@ def randomGr(V: int = 10, E: int = 20) -> Graph:
         v = randoms.r_int(V - 1)
         w = randoms.r_int(V - 1)
         # if v-w not exist, add edj
-        if w not in gr.adjlist(v):
+        if w not in gr.adjlist(v) and v != w:
             gr.addEdge(v, w)
             i -= 1
     return gr

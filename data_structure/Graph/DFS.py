@@ -1,21 +1,7 @@
 #!/usr/bin/python3
 
-from GH import Graph, prgraph
-from test import randomGr
-import functools
-
-test = prgraph()
-gr = randomGr(50, 100)
-dot = test.graph(gr)
-
-
-def dot_node(func):
-    @functools.wraps(func)
-    def wrapper(*args, **kw):
-        dot.node(str(args[2]), color='red')
-        return func(*args, **kw)
-
-    return wrapper
+from GH import Graph
+from gif import getGr, gif, dot_node
 
 
 class DFS(object):
@@ -42,6 +28,7 @@ class DFS(object):
 
 
 if __name__ == "__main__":
-    df = DFS(gr, 5)
-    dot.view()
+    gr = getGr()
+    df = DFS(gr, 0)
+    gif()
     pass
