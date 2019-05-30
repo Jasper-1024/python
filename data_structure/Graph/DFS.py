@@ -34,7 +34,7 @@ class DFP(Paths):
 
     def __init__(self, gr: Graph, s: int):
         self.marked = [False] * gr.rV()
-        self.marked = [0] * gr.rV()
+        self.marked = [None] * gr.rV()
         self.s = s
         self.dfs(gr, s)
 
