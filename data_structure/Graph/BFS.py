@@ -2,6 +2,7 @@
 
 from GH import Graph, Search, Paths
 from collections import deque
+from gif import getGr, dot_node, gif
 
 
 class BFS(Search):
@@ -14,6 +15,7 @@ class BFS(Search):
         self.dfs(G, s)
 
     def dfs(self, G: Graph, s: int):
+        dot_node(s)
         queue = deque()
         self.marked[s] = True
         queue.append(s)
@@ -24,6 +26,8 @@ class BFS(Search):
                     self.marked[w] = True
                     self.count += 1
                     queue.append(w)
+
+                    dot_node(w)
 
     def rmarked(self, v: int) -> bool:
         return self.marked[v]
@@ -71,3 +75,10 @@ class BFP(Paths):
             path.append(x)
         path.append(self.s)
         return path
+
+
+if __name__ == "__main__":
+    gr = getGr()
+    bf = BFS(gr, 0)
+    gif()
+    pass

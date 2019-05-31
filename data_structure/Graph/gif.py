@@ -9,13 +9,20 @@ test = prgraph()
 gr = copy.deepcopy(Graph().load())
 dot = test.graph(gr)
 
-image_name = 0
+
+def dot_node(w: int):
+    dot.node(str(w), color='red')
+    dot.attr(size='20,20')
+    dot.format = 'png'
+    dot.render(filename='%s' % (str(time.time() * 1000 % 10000)),
+               directory=None,
+               view=False,
+               cleanup=True)
 
 
-def dot_node(func):
+def wrap_dot_node(func):
     @functools.wraps(func)
     def wrapper(*args, **kw):
-        global image_name
 
         dot.node(str(args[2]), color='red')
         dot.attr(size='20,20')
@@ -24,7 +31,6 @@ def dot_node(func):
                    directory=None,
                    view=False,
                    cleanup=True)
-        image_name += 1
         return func(*args, **kw)
 
     return wrapper
