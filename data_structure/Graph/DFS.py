@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from GH import Graph, Search, Paths
-from gif import getGr, gif, dot_node
+from gif import getGr, gif, wrap_dot_node
 
 
 class DFS(Search):
@@ -12,7 +12,7 @@ class DFS(Search):
         self.marked = [False] * gr.rV()
         self.dfs(gr, s)
 
-    @dot_node
+    @wrap_dot_node
     def dfs(self, gr: Graph, v: int):
         self.marked[v] = True
         self.count += 1
@@ -28,8 +28,8 @@ class DFS(Search):
 
 
 class DFP(Paths):
-    marked: list[bool] = []
-    edgeTo: list[int] = []
+    marked: list = []
+    edgeTo: list = []
     s: int = 0
 
     def __init__(self, gr: Graph, s: int):
