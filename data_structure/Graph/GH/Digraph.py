@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 from .GHclass import GH
+import pickle
 
 
 class Digraph(GH):
@@ -31,6 +32,16 @@ class Digraph(GH):
             for e in item:
                 R.addEdge(e, v)
         return R
+
+    def save(self, fileName: str = 'Digraph.pickle'):
+        file = open(fileName, 'wb')
+        pickle.dump(self, file)
+        file.close
+
+    def load(self, fileName: str = 'Digraph.pickle'):
+        with open(fileName, 'rb') as file:
+            digraph = pickle.load(file)
+        return digraph
 
 
 class Digraph_AM(GH):
@@ -67,6 +78,17 @@ class Digraph_AM(GH):
                 if iteme == 1:
                     R.addEdge(v, e)
         return R
+
+    def save(self, fileName: str = 'Digraph_AM.pickle'):
+        file = open(fileName, 'wb')
+        pickle.dump(self, file)
+        file.close
+
+    def load(self, fileName: str = 'Digraph_AM.pickle'):
+        with open(fileName, 'rb') as file:
+            digraph = pickle.load(file)
+        return digraph
+
 
 if __name__ == "__main__":
     test = Digraph(5)

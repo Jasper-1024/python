@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 from .GHclass import GH
+import pickle
 
 
 # 图数据结构
@@ -26,6 +27,16 @@ class Graph(GH):
 
     def adjlist(self, v: int) -> list:
         return self.adj[v]
+
+    def save(self, fileName: str = 'Graph.pickle'):
+        file = open(fileName, 'wb')
+        pickle.dump(self, file)
+        file.close
+
+    def load(self, fileName: str = 'Graph.pickle'):
+        with open(fileName, 'rb') as file:
+            graph = pickle.load(file)
+        return graph
 
 
 # 图数据结构
@@ -57,3 +68,12 @@ class Graph_AM(GH):
                 vlist.append(e)
         return vlist
 
+    def save(self, fileName: str = 'Graph_AM.pickle'):
+        file = open(fileName, 'wb')
+        pickle.dump(self, file)
+        file.close
+
+    def load(self, fileName: str = 'Graph_AM.pickle'):
+        with open(fileName, 'rb') as file:
+            graph = pickle.load(file)
+        return graph

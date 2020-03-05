@@ -31,3 +31,10 @@ class GH(object):
     def toString(self):
         pass
 
+    # save to file
+    def save(self):
+        pass
+
+    # load from file
+    def load(self, file):
+        pass
