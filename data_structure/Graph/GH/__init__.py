@@ -7,5 +7,5 @@ from .SearchClass import Search, Paths
 from .CcClass import CC
 from .TopoClass import Topological
 import sys
-sys.path.append('/home/jasperhale/software/work/python')
+sys.path.append('/home/jasperhale/software/work/code/python')
 from libs import prgraph, randoms
